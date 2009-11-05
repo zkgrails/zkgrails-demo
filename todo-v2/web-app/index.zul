@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="page" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page zscriptLanguage="GroovyGrails"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+<window title="ToDo list" width="640px" border="normal" apply="${indexComposer}">
+    
+    <style dynamic="true">
+        .message {
+            background: red;
+            color: white;
+            font-weight: bolder;
+        }
+        .navbutton {
+            width:  60px;
+            height: 24px;
+        }
+    </style>
+
+    <vbox>
+        <image src="images/grails_logo.jpg"/>
+    </vbox>
+    <!-- div id="divMessage" align="center">
+        <label sclass="message" id="lblMessage" value="test" />
+    </div -->
+    <listbox id="lstTodo" multiple="true" rows="4" 
+             model="@{todoFacade.events}"
+             selectedItem="@{todoFacade.selected}">
+
+        <listhead>
+            <listheader label="Name" />
+            <listheader label="Priority" width="80px" />
+            <listheader label="Date" width="180px" />
+        </listhead>
+        
+        <listitem self="@{each=event}" value="@{event.id}">
+            <listcell label="@{event.name}" />
+            <listcell label="@{event.priority}" />
+            <listcell label="@{event.date}" />
+        </listitem>
+        
+     </listbox>
+     
+    <groupbox>
+        <caption label="Event" />
+        <hbox>
+            <button id="btnAdd"     label="Add"     sclass="navbutton"/>
+            <button id="btnUpdate"  label="Update"  sclass="navbutton"/>
+            <button id="btnDelete"  label="Delete"  sclass="navbutton"/>
+            <button id="btnRefresh" label="Refresh" sclass="navbutton"/>
+        </hbox>
+        <separator bar="true"/>
+        <grid>
+            <rows>
+                <row>Name: <textbox id="fdName" cols="25" value="@{todoFacade.selected.name}" /></row>
+                <row>Priority: <intbox  id="fdPriority" cols="4" value="@{todoFacade.selected.priority}" /></row>
+                <row>Date: <datebox id="fdDate" cols="21" value="@{todoFacade.selected.date}" /></row>
+            </rows>
+        </grid>
+    </groupbox>
+</window>
+
+</zk>
