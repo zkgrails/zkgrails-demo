@@ -128,7 +128,7 @@ td.errors input {
 }
 
 /* TABLES */
-
+/*
 table {
     border: 1px solid #ccc;
     width: 100%
@@ -168,7 +168,7 @@ th.asc a {
 th.desc a {
     background-image: url(../images/skin/sorted_desc.gif);
 }
-
+*/
 .odd {
     background: #f7f7f7;
 }

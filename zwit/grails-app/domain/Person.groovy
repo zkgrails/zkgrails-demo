@@ -1,7 +1,3 @@
-
-
-
-
 /**
  * User domain class.
  */
@@ -12,14 +8,16 @@ class Person {
 
 	/** Username */
 	String username
+
 	/** User Real Name*/
 	String userRealName
+
 	/** MD5 Password */
 	String passwd
 	/** enabled */
 	boolean enabled
 
-	String email
+	String  email
 	boolean emailShow
 
 	/** description */
