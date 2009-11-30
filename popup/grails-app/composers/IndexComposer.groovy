@@ -11,11 +11,11 @@ class IndexComposer extends GrailsComposer {
     def wndTest
     
     def onClick_wndTest() {
-        def zk = new ZkBuilder(parent: wndTest.root)
-        println "wndTest.root: $wndTest.root"
-        def popup = zk.popup() { // NPE here
+        // supported the build property, issue 73
+        def popup = build.popup(parent: wndTest.root) { // NPE here
             label(value: "email")
         }
+        println "wndTest.root: $wndTest.root"        
     }
     
     def onClick_btnHello() {
