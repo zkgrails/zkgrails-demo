@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<?page zscriptLanguage="GroovyGrails"?>
+
+<borderlayout height="650px" width="100%">
+    <north size="200px" border="0">
+    </north>
+    <center border="0">
+        <div align="center"> 
+        <window border="normal" width="350px" apply="${loginComposer}">
+             <caption label="Login"/>
+             <grid>
+                <rows>
+                 <row><label value="User:"/>     <textbox id="txtUser" />   </row>
+                 <row><label value="Password:"/> <textbox id="txtPassword"/></row>
+                 <row>
+                     <div/>
+                     <hbox><button id="btnLogin" label="Login"/><button label="Cancel"/></hbox>                    
+                 </row>
+                 <row spans="2">
+                     <checkbox label="Remember me"/>
+                 </row>
+                 <row spans="2">
+                     <toolbarbutton label="Forgot password?" href="http://google.com"/>                    
+                 </row>
+                </rows>
+             </grid>
+        </window>
+        </div>
+    </center>
+</borderlayout>

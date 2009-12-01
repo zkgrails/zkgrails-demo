@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zk>
+    <system-config>
+        <disable-event-thread/>
+    </system-config>
     <listener>
         <description>ThreadLocal Synchronization Listener</description>
         <listener-class>org.zkoss.zkplus.util.ThreadLocalListener</listener-class>
@@ -18,6 +21,7 @@
                 org.springframework.orm.hibernate3.SessionFactoryUtils=deferredCloseHolder;
                 org.springframework.transaction.interceptor.TransactionAspectSupport=transactionInfoHolder;
                 org.springframework.web.context.request.RequestContextHolder=requestAttributesHolder,inheritableRequestAttributesHolder;
+                org.springframework.security.context.ThreadLocalSecurityContextHolderStrategy=contextHolder;
             </value>
     </preference>
 </zk>

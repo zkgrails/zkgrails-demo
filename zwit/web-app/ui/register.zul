@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<?page zscriptLanguage="GroovyGrails"?>
+
+<borderlayout height="650px" width="100%">
+    <north size="200px" border="0">
+    </north>
+    <center border="0">
+        <div align="center"> 
+        <window border="normal" width="350px" apply="${registerComposer}">
+             <caption label="Register"/>
+             <grid>
+                <rows>
+                 <row><label value="Login Name:"/>       <textbox id="txtUser" />     </row>
+                 <row><label value="Full Name:"/>        <textbox id="txtFullname"/>  </row>
+                 <row><label value="Password:"/>         <textbox id="txtPassword"/>  </row>
+                 <row><label value="Confirm Password:"/> <textbox id="txtPassword2"/> </row>
+                 <row><label value="Email:"/>            <textbox id="txtEmail"/>     </row>
+                 <row><label value="Enter Code:"/>       <textbox id="txtCode"/>      </row>
+                 <row spans="2">
+                    <button id="btnCreate" label="Create"/>
+                 </row>
+                </rows>
+             </grid>
+        </window>
+        </div>
+    </center>
+</borderlayout>

@@ -1,7 +1,3 @@
-
-
-
-
 /**
  * Authority domain class.
  */
