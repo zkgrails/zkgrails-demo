@@ -1,7 +1,7 @@
-import org.zkoss.zkgrails.*;
-import org.zkoss.zk.ui.*;
-import org.zkoss.zk.ui.event.*;
-import org.springframework.security.annotation.Secured;
+import org.zkoss.zkgrails.*
+import org.zkoss.zk.ui.*
+import org.zkoss.zk.ui.event.*
+import org.springframework.security.annotation.Secured
 //import org.codehaus.groovy.grails.plugins.springsecurity.Secured;
 
 class RegisterComposer extends GrailsComposer {
