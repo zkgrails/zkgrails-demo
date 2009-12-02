@@ -6,11 +6,19 @@ class LoginComposer extends GrailsComposer {
 
     def txtUser
     def txtPassword
-    
+
     def btnLogin
-    
+
     def session
-    
+
+    static secured = {
+        ROLE_ADMIN {
+            allow  onClick_btnLogin
+            show   txtPassword, txtUser
+            enable btnLogin
+        }
+    }
+
     def onClick_btnLogin(Event e) {
         println "txtUser.value"
         println "login"
