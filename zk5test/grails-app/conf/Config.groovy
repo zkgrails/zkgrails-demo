@@ -72,5 +72,5 @@ log4j = {
     warn   'org.mortbay.log'
 }
 
-
+grails.zk.taglib.disabled = false
      
