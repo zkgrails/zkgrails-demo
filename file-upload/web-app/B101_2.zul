@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page zscriptLanguage="GroovyGrails"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+    <button label="Uploads" upload="true">
+        <attribute name="onClick"><![CDATA[
+            Object media = Fileupload.get(5);
+            if (media != null)
+                for (int j = 0; j < media.length; ++j) {
+                    if (media[j] instanceof org.zkoss.image.Image) {
+                        Image image = new Image();
+                        image.setContent(media[j]);
+                        image.setParent(pics);
+                    } else if (media[j] != null) {
+                        Messagebox.show("Not an image: "+media[j], "Error",
+                            Messagebox.OK, Messagebox.ERROR);
+                    }
+                }
+        ]]>
+        </attribute>
+    </button>
+    <vbox id="pics" />
+</zk>

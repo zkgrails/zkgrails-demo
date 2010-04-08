@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?variable-resolver
+class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+
+<?page zscriptLanguage="GroovyGrails"?>
+
+<zk>
+<style>
+.mail-menu {
+	float:left;
+	background: none !important;
+	border: 0 !important;
+}
+.mail-menu a {
+	text-decoration: none;
+}
+.viewer {
+	background:#F4F8FF;
+	border: 1px solid #99AABD;
+	font-family: tahoma,helvetica,arial,sans-serif;
+	font-size: 11px;
+	padding: 2px;
+	width: 500px;
+	color: #0F3B82;
+}
+.viewer a {
+	color: #0366AC;
+	font-weight: bold;
+	cursor: pointer;
+}
+.float-left {
+	float: left;
+}
+.float-right {
+	float: right;
+}
+.clear {
+	clear: both;
+}
+</style>
+<script><![CDATA[
+zk.MyFileViewer = zk.$extends(zk.Object, {
+	updated: null,
+	$init: function (uplder,  filenm) {
+		this._uplder = uplder;
+		var id = uplder.id,
+			uri = zk.ajaxURI('/web/zk/img/progress2.gif', {au:true}),
+			html = '<div id="' + id + '" class="viewer"><image class="float-left" src="' + uri + '"/>'
+			+ '<div class="float-left">&nbsp;&nbsp;&nbsp;FileName: ' + filenm
+			+ ' <a id="' + id + '-cancel">Cancel</a></div><div class="float-right">'
+			+ mesg.FILE_SIZE + ': <span id="' + id + '-sent">0</span> of '
+			+ '<span id="' + id + '-total">0</span></div><div class="clear"></div></div>';
+			
+		jq(uplder.getWidget().getPage()).append(html);
+		
+		this.viewer = jq('#'+ id)[0];
+		jq('#' + id + '-cancel').click(function() {
+			uplder.cancel();
+		});
+	},
+	update: function (sent, total) {
+		jq('#'+ this._uplder.id + '-sent').html(Math.round((total/1024)*sent/100) + mesg.KBYTES);
+		if (!this.updated) {
+			this.updated = true;
+			jq('#'+ this._uplder.id + '-total').html(Math.round(total/1024)+mesg.KBYTES);
+		}
+	},
+	destroy: function () {
+		jq(this.viewer).remove();
+	}
+});
+]]></script>
+<panel width="500px" framable="true">
+	<caption>
+		<menubar sclass="mail-menu">
+			<menuitem src="/images/Centigrade-Widget-Icons/Envelope-16x16.png" label="Send"/>
+			<menuitem src="/images/Centigrade-Widget-Icons/PaperClip-16x16.png" upload="true,maxsize=-1" label="Attach"/>
+			<menuitem src="/images/Centigrade-Widget-Icons/PaperClip-16x16.png" upload="zk.MyFileViewer,maxsize=-1" label="Customized Attach"/>
+			<menuitem src="/images/Centigrade-Widget-Icons/DisketteBlack-16x16.png" label="Save Draft"/>
+			<menuitem label="Help" src="/images/Centigrade-Widget-Icons/QuestionmarkButton-16x16.png"/>
+		</menubar>
+	</caption>
+	<toolbar style="border:0;background:#CDF0FF">
+		<vbox>
+			<hbox pack="end" widths="50px"><label value="To:"/><textbox width="350px"/><label style="color:blue" value="Show BCC"/></hbox>
+			<hbox pack="end" widths="50px"><label value="CC:"/><textbox width="400px"/></hbox>
+			<hbox pack="end" widths="50px"><label value="Subject:"/><textbox width="350px"/><label style="color:blue" value="Plain Text"/></hbox>
+		</vbox>
+	</toolbar>
+	<panelchildren>
+		<textbox multiline="true" rows="15" width="99%"/>
+	</panelchildren>
+</panel>
+</zk>
