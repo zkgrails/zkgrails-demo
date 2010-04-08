@@ -8,8 +8,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-<window title="ToDo list" width="640px" border="normal" apply="${indexComposer}">
-    
+<window title="ToDo list" apply="com.zkgrails.indexComposer" width="640px" border="normal">
+
     <style dynamic="true">
         .message {
             background: red;
@@ -23,11 +23,11 @@
     </style>
 
     <vbox>
-        <image src="images/grails_logo.jpg"/>
+        <image src="images/grails_logo.png"/>
     </vbox>
-    <!-- div id="divMessage" align="center">
-        <label sclass="message" id="lblMessage" value="test" />
-    </div -->
+    <div id="divMessage" align="center">
+        <label sclass="message" id="lblMessage" value="" />
+    </div>
     <listbox id="lstTodo" multiple="true" rows="4" 
              model="@{todoFacade.events}"
              selectedItem="@{todoFacade.selected}">
@@ -62,6 +62,7 @@
                 <row>Date: <datebox id="fdDate" cols="21" value="@{todoFacade.selected.date}" /></row>
             </rows>
         </grid>
+            <button id="btnSave" label="Save" visible="false"/>
     </groupbox>
 </window>
 

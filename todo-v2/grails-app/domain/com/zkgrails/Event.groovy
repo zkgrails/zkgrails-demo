@@ -1,3 +1,5 @@
+package com.zkgrails
+
 class Event {
     
     String name
